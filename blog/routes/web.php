@@ -46,7 +46,9 @@ Route::prefix('Darbuotojas')->middleware(['worker', 'auth'])->group(function (){
 
 Route::prefix('Parduotuve')->middleware(['notadmin', 'auth'])->group(function (){
     Route::get('/Prekes', [App\Http\Controllers\ProductController::class, 'viewPrekes'])->name('viewProducts');
+    Route::get('/Preke', [App\Http\Controllers\ProductController::class, 'viewPreke'])->name('viewProduct');
     Route::get('/Užsakymai', [App\Http\Controllers\OrderController::class, 'viewOrders'])->name('viewOrders');
+    Route::get('/Užsakymas', [App\Http\Controllers\OrderController::class, 'viewOrder'])->name('viewOrder');
 });
 
 Route::prefix('Vartotojas')->middleware(['user', 'auth'])->group(function (){

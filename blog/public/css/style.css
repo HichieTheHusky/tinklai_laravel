@@ -1,3 +1,16 @@
+table .explenation
+{
+    width:auto;
+    text-align:right;
+    white-space: nowrap;
+    background-color: lightgrey;
+}
+table .content {
+    width: 100%
+}
+
+
+
 .main-section{
     background-color: #F8F8F8;
 }

@@ -85,6 +85,27 @@ class ProductController extends Controller
         return view('viewProducts', compact('products'));
     }
 
+    public function viewPreke(Request $request)
+    {
+        $product = product::find($request['id']);
+        if($product->category == product::TYPE_BASE){
+            $specific_product = base::find($product->fk_base);
+        }
+        if($product->category == product::TYPE_BRAKE){
+            $specific_product = brake::find($product->fk_break);
+        }
+        if($product->category == product::TYPE_SADDLE){
+            $specific_product = saddle::find($product->fk_saddle);
+        }
+        if($product->category == product::TYPE_TYRE){
+            $specific_product = tyre::find($product->fk_tyres);
+        }
+        if($product->category == product::TYPE_ACC){
+            $specific_product = accessory::find($product->fk_acc);
+        }
+        return view('viewProduct', compact('product','specific_product'));
+    }
+
     public function deleteProduct(Request $request)
     {
         $product = product::find($request['id']);

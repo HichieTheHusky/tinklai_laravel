@@ -44,6 +44,12 @@
                                     <td>{{$product->quantity }}</td>
                                     <td>{{$product->color}}</td>
                                     <td>
+                                        <form style="display: inline;" method="post" action="{{ route('viewProduct') }}">
+                                            <input type="hidden" id="id" name="id" value={{ $product->id }}>
+                                            @csrf
+                                            @method('get')
+                                            <button type="submit" class="btn btn-sm btn-primary">Žiūrėti</button>
+                                        </form>
                                         @if(auth()->user()->user_type == \App\Models\User::ROLE_WORKER)
                                         <form style="display: inline;" method="post" action="{{ route('changePreke') }}" onclick="return confirm('Ar tikrai norite keisti?')">
                                             <input type="hidden" id="id" name="id" value={{ $product->id }}>
@@ -59,7 +65,7 @@
                                         </form>
                                         @endif
                                         @if(auth()->user()->user_type == \App\Models\User::ROLE_USER)
-                                            <p class="btn-holder"><a href="{{ url('Vartotojas/add-to-cart/'.$product->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>
+                                            <p class="btn btn-sm btn-holder"><a href="{{ url('Vartotojas/add-to-cart/'.$product->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>
                                         @endif
                                     </td>
                                 </tr>

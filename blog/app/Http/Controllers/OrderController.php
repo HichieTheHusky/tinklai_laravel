@@ -31,6 +31,13 @@ class OrderController extends Controller
         return view('viewOrders', compact('orders'));
     }
 
+    public function viewOrder(Request $request)
+    {
+        $order= Order::find($request['id']);
+
+        return view('viewOrder', compact('order'));
+    }
+
     public function deleteOrder(Request $request)
     {
         $order = Order::find($request['id']);
