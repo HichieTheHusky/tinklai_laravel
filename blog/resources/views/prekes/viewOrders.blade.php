@@ -73,18 +73,20 @@
                                                 <input type="hidden" id="id" name="id" value={{ $order->id }}>
                                                 @csrf
                                                 @method('post')
-                                                <button type="submit" class="btn btn-sm btn-primary">Patvirtinti</button>
+                                                <button type="submit" class="btn btn-sm btn-warning">Patvirtinti</button>
                                             </form>
                                         @endif
-                                        @if(auth()->user()->user_type == \App\Models\User::ROLE_USER && $order->status == 0)
+                                        @if(auth()->user()->user_type == \App\Models\User::ROLE_USER)
+                                            @if($order->status == 0)
                                                 <form style="display: inline;" method="post" action="{{ route('deleteOrder') }}" onclick="return confirm('Ar tikrai norite pašalinti?')">
-                                                    <input type="hidden" id="id" name="id" value={{ $order->id }}>
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class="btn btn-sm btn-danger">Atšaukti</button>
-                                                </form>
-                                        @else
-                                            Dėl atšaukimo teiraukites pas administratoriu.
+                                                        <input type="hidden" id="id" name="id" value={{ $order->id }}>
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-sm btn-danger">Atšaukti</button>
+                                                    </form>
+                                            @else
+                                                Dėl atšaukimo teiraukites pas administratoriu.
+                                            @endif
                                         @endif
                                     </td>
                                 </tr>
