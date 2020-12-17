@@ -320,7 +320,7 @@
                     </table>
 
 
-                        <form method="post" action="{{ route('buyPreke') }}">
+                        <form method="post" action="{{ route('buyBike') }}">
                             @csrf
                             <div class="form-group">
                                 <label for="adress">Pilnas adresas</label>
@@ -362,7 +362,7 @@
                                         </span>
                                 @enderror
                             </div>
-                            <input type="hidden" id="assembly" name="assembly" value='0'>
+                            <input type="hidden" id="assembly" name="assembly" value='1'>
                             <button type="submit" class="btn btn-success">Sukurti užsakymą</button>
                         </form>
 

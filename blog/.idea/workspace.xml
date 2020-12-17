@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50a5cdf8-c133-44ce-9b66-d09d3496bdbf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/viewUsers.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/prekes/cart.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/prekes/partpicker.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/prekes/viewOrders.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/prekes/viewPickerProducts.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/prekes/viewProducts.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/worker/addAcc.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/worker/addBase.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/worker/addBrake.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/worker/addProdcut.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/worker/addSaddle.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/worker/addTyre.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/worker/updatePreke.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/prekes/cart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/prekes/cart.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/prekes/partpicker.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/prekes/partpicker.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,11 +147,12 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\lukas\Documents\GitHub\tinklai_laravel\blog\public\css" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\lukas\Documents\GitHub\tinklai_laravel\blog\resources\views\admin" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lukas\Documents\GitHub\tinklai_laravel\blog\public\img" />
+      <recent name="C:\Users\lukas\Documents\GitHub\tinklai_laravel\blog\public\css" />
     </key>
   </component>
   <component name="RunManager">
@@ -180,7 +175,7 @@
       <workItem from="1608018981052" duration="7005000" />
       <workItem from="1608026173442" duration="14624000" />
       <workItem from="1608102926989" duration="19546000" />
-      <workItem from="1608189866183" duration="4292000" />
+      <workItem from="1608189866183" duration="7590000" />
     </task>
     <servers />
   </component>

@@ -211,7 +211,6 @@ class ProductController extends Controller
 
     public function buyPreke(Request $request)
     {
-
         $order = new Order();
         $order->status = 0;
         $order->adress = $request['adress'];
@@ -240,7 +239,7 @@ class ProductController extends Controller
             $item->save();
         }
         session()->forget('cart');
-        return redirect()->route('viewProducts');
+        return redirect()->route('viewOrders');
     }
 
     public function updateOrders(int $id)
@@ -333,5 +332,50 @@ class ProductController extends Controller
             }
         }
         return redirect()->back();
+    }
+
+    public function buyBike(Request $request)
+    {
+        $order = new Order();
+        $order->status = 0;
+        $order->adress = $request['adress'];
+        $order->assembly = $request['assembly'];
+        $order->number = $request['number'];
+        $order->date = $request['date'];
+        $order->cvc = $request['cvc'];
+        $order->fk_user = auth()->user()->id;
+        $order->save();
+
+        $this->helperBuyBike(product::TYPE_BASE,$order->id);
+        $this->helperBuyBike(product::TYPE_BRAKE,$order->id);
+        $this->helperBuyBike(product::TYPE_SADDLE,$order->id);
+        $this->helperBuyBike(product::TYPE_TYRE,$order->id);
+        $this->helperBuyBike(product::TYPE_ACC,$order->id);
+
+        return redirect()->route('viewOrders');
+
+    }
+
+    public function helperBuyBike($name, $order_id)
+    {
+        foreach (session($name) as $id => $details)
+        {
+            $item = new Item();
+            $item->quantity = $details['quantity'];
+            $item->fk_order = $order_id;
+            $item->fk_product = $id;
+            $product = product::find($id);
+            if($product->quantity >=  $item->quantity )
+            {
+                $product->quantity =  $product->quantity - $item->quantity;
+                $product->save();
+                $item->status = 1;
+            } else{
+                $item->status = 0;
+            }
+            $item->save();
+        }
+        session()->forget($name);
+        return;
     }
 }

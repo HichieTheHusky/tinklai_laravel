@@ -57,9 +57,12 @@ Route::prefix('Vartotojas')->middleware(['user', 'auth'])->group(function (){
     Route::post('/buyPreke', [App\Http\Controllers\ProductController::class, 'buyPreke'])->name('buyPreke');
 
     Route::delete('/TrintiUžsakymą', [App\Http\Controllers\OrderController::class, 'deleteOrder'])->name('deleteOrder');
+
     Route::view('PasidarykDvirati','partpicker')->name('partpicker');
     Route::get('/Prekes', [App\Http\Controllers\ProductController::class, 'viewPickerPrekes'])->name('viewPickerProducts');
     Route::get('add-to-picker/{id}', [App\Http\Controllers\ProductController::class,'addPickerPreke']);
     Route::delete('remove-from-picker', [App\Http\Controllers\ProductController::class,'pickerremove'])->name('remove-from-picker');
+    Route::post('/buyBike', [App\Http\Controllers\ProductController::class, 'buyBike'])->name('buyBike');
+
 
 });

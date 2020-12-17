@@ -51,7 +51,7 @@
                                                                                         @method('patch')
                                                                                         <button type="submit" class="btn btn-sm btn-primary">Atnaujinti</button>
                                                                                     </form>
-                                            <form style="display: inline;" method="post" action="{{ route('remove-from-picker') }}" onclick="return confirm('Ar tikrai norite pašalinti?')">
+                                            <form style="display: inline;" method="post" action="{{ route('remove-from-cart') }}" onclick="return confirm('Ar tikrai norite pašalinti?')">
                                                 <input type="hidden" id="id" name="id" value={{ $id }}>
                                                 @csrf
                                                 @method('delete')
