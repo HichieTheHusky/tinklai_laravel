@@ -128,7 +128,9 @@
                                 @enderror
                             </div>
                             <input type="hidden" id="assembly" name="assembly" value='0'>
+                            @if(session('cart'))
                             <button type="submit" class="btn btn-success">Sukurti užsakymą</button>
+                            @endif
                         </form>
 
                     </div>

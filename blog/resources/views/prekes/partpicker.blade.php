@@ -363,7 +363,18 @@
                                 @enderror
                             </div>
                             <input type="hidden" id="assembly" name="assembly" value='1'>
-                            <button type="submit" class="btn btn-success">Sukurti užsakymą</button>
+                            @if(session('Base'))
+                                @if(session(\App\Models\product::TYPE_BRAKE))
+                                    @if(session(\App\Models\product::TYPE_SADDLE))
+                                        @if(session(\App\Models\product::TYPE_TYRE))
+                                            @if(session(\App\Models\product::TYPE_ACC))
+
+                                    <button type="submit" class="btn btn-success">Sukurti užsakymą</button>
+                                            @endif
+                                        @endif
+                                    @endif
+                                @endif
+                            @endif
                         </form>
 
                     </div>
