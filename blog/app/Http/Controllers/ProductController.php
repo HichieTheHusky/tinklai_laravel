@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\product;
 use App\Models\saddle;
 use App\Models\tyre;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -21,6 +22,28 @@ class ProductController extends Controller
 
     public function createPreke(Request $request)
     {
+        $request->validate([
+            'pavadinimas' => ['required', 'string', 'max:255'],
+            'tekstas' => ['required', 'string', 'max:255'],
+            'url' => ['required', 'url', 'string', 'max:255'],
+            'color' => ['required', 'string', 'max:255'],
+            'kaina' => ['required', 'numeric','regex:/^\d+(\.\d{1,2})?$/'],
+            'quantity' => ['required', 'numeric'],
+        ],
+        [
+            'pavadinimas.required' => 'Pavadinimas turi būti įvestas',
+            'pavadinimas.max' => 'Pavadinimas turi būti iki 255 simbolių',
+            'tekstas.required' => 'Aprašymas turi būti įvestas',
+            'tekstas.max' => 'Aprašymas turi būti iki 255 simbolių',
+            'url.required' => 'Nuotraukos adresas turi būti įvestas',
+            'url.max' => 'Nuotraukos adresas turi būti iki 255 simbolių',
+            'url.url' => 'Nuotrauka turi buti korektiškas adresas',
+            'color.required' => 'Spalva turi būti įvestas',
+            'kaina.required' => 'Kaina turi būti įvestas',
+            'kaina.regex' => 'Kaina įvesta buvo nekorektiška, iveskite taip skaicius.skaicius, arba skaicius',
+            'quantity.required' => 'Kiekis turi būti įvestas',
+        ]);
+
 
         $product = new product();
         $product->name = $request['pavadinimas'];
@@ -32,6 +55,15 @@ class ProductController extends Controller
         $product->quantity = $request['quantity'];
 
         if ($request['kategory'] == product::TYPE_ACC) {
+            $request->validate([
+                'type' => ['required', 'string', 'max:255'],
+                'materials' => ['required', 'string', 'max:255'],
+            ],
+            [
+                'type.required' => 'Tipas turi būti įvestas',
+                'materials.required' => 'Medžiaga turi būti įvestas',
+            ]);
+
             $type_product = new accessory();
             $type_product->type = $request['type'];
             $type_product->materials = $request['material'];
@@ -40,6 +72,19 @@ class ProductController extends Controller
         }
 
         if ($request['kategory'] == product::TYPE_BASE) {
+
+            $request->validate([
+                'usecase' => ['required', 'string', 'max:255'],
+                'material' => ['required', 'string', 'max:255'],
+                'weight' => ['required', 'numeric'],
+            ],
+            [
+                'usecase.required' => 'Tipas turi būti įvestas',
+                'material.required' => 'Medžiaga turi būti įvestas',
+                'weight.required' => 'Svoris turi būti įvestas',
+                'weight.numeric' => 'Svoris turi būti skaičius',
+            ]);
+
             $type_product = new base();
             $type_product->usecase = $request['usecase'];
             $type_product->weight = $request['weight'];
@@ -49,6 +94,14 @@ class ProductController extends Controller
         }
 
         if ($request['kategory'] == product::TYPE_BRAKE) {
+            $request->validate([
+                'type' => ['required', 'string', 'max:255'],
+                'material' => ['required', 'string', 'max:255'],
+            ],
+                [
+                    'type.required' => 'Tipas turi būti įvestas',
+                    'material.required' => 'Medžiaga turi būti įvestas',
+                ]);
             $type_product = new brake();
             $type_product->type = $request['type'];
             $type_product->material = $request['material'];
@@ -57,6 +110,19 @@ class ProductController extends Controller
         }
 
         if ($request['kategory'] == product::TYPE_SADDLE) {
+            $request->validate([
+                'size' => ['required', 'string', 'max:255'],
+                'weight' => ['required', 'numeric'],
+                'maxweight' => ['required', 'numeric'],
+            ],
+                [
+                    'size.required' => 'Dydis turi būti įvestas',
+                    'weight.required' => 'Svoris turi būti įvestas',
+                    'weight.numeric' => 'Svoris turi būti skaičius',
+                    'maxweight.required' => 'Maksimalus svoris turi būti įvestas',
+                    'maxweight.numeric' => 'Maksimalus svoris turi būti skaičius',
+                ]);
+
             $type_product = new saddle();
             $type_product->size = $request['size'];
             $type_product->weight = $request['weight'];
@@ -66,6 +132,18 @@ class ProductController extends Controller
         }
 
         if ($request['kategory'] == product::TYPE_TYRE) {
+            $request->validate([
+                'size' => ['required', 'string', 'max:255'],
+                'weight' => ['required', 'numeric'],
+                'maxweight' => ['required', 'numeric'],
+            ],
+                [
+                    'size.required' => 'Dydis turi būti įvestas',
+                    'weight.required' => 'Svoris turi būti įvestas',
+                    'weight.numeric' => 'Svoris turi būti skaičius',
+                    'maxweight.required' => 'Maksimalus svoris turi būti įvestas',
+                    'maxweight.numeric' => 'Maksimalus svoris turi būti skaičius',
+                ]);
             $type_product = new tyre();
             $type_product->size = $request['size'];
             $type_product->weight = $request['weight'];
@@ -142,6 +220,20 @@ class ProductController extends Controller
 
     public function addPreke(Request $request)
     {
+        $validator = Validator::make($request->all(),
+        [
+            'quantity' => ['required', 'numeric'],
+        ],
+        [
+            'quantity.required' => 'Kiekis turi būti įvestas',
+            'quantity.numeric' => 'Kiekis turi būti skaičius',
+        ]);
+        if ($validator->fails()) {
+            $product = product::find($request['id']);
+            return view('updatePreke', compact('product'))
+                ->withErrors($validator);
+        }
+
         $product = product::find($request['id']);
         $product->quantity = $product->quantity + $request['quantity'];
         $product->save();
@@ -151,6 +243,34 @@ class ProductController extends Controller
 
     public function updatePreke(Request $request)
     {
+        $validator = Validator::make($request->all(),
+            [
+            'pavadinimas' => ['required', 'string', 'max:255'],
+            'tekstas' => ['required', 'string', 'max:255'],
+            'url' => ['required', 'url', 'string', 'max:255'],
+            'color' => ['required', 'string', 'max:255'],
+            'kaina' => ['required', 'numeric','regex:/^\d+(\.\d{1,2})?$/'],
+            'quantity' => ['required', 'numeric'],
+            ],
+            [
+            'pavadinimas.required' => 'Pavadinimas turi būti įvestas',
+            'pavadinimas.max' => 'Pavadinimas turi būti iki 255 simbolių',
+            'tekstas.required' => 'Aprašymas turi būti įvestas',
+            'tekstas.max' => 'Aprašymas turi būti iki 255 simbolių',
+            'url.required' => 'Nuotraukos adresas turi būti įvestas',
+            'url.max' => 'Nuotraukos adresas turi būti iki 255 simbolių',
+            'url.url' => 'Nuotrauka turi buti korektiškas adresas',
+            'color.required' => 'Spalva turi būti įvestas',
+            'kaina.required' => 'Kaina turi būti įvestas',
+            'kaina.regex' => 'Kaina įvesta buvo nekorektiška, iveskite taip skaicius.skaicius, arba skaicius',
+            'quantity.required' => 'Kiekis turi būti įvestas',
+            ]);
+
+        if ($validator->fails()) {
+            $product = product::find($request['id']);
+            return view('updatePreke', compact('product'))->withErrors($validator);
+        }
+
         $product = product::find($request['id']);
         $product->name = $request['pavadinimas'];
         $product->price = $request['kaina'];
@@ -232,6 +352,28 @@ class ProductController extends Controller
 
     public function buyPreke(Request $request)
     {
+
+        $request->validate([
+            'adress' => ['required', 'string', 'max:255'],
+            'number' => ['required', 'numeric', 'min:16', 'max:16'],
+            'date' => ['required', 'string', 'min:5', 'max:5'],
+            'cvc' => ['required', 'numeric', 'min:3', 'max:3'],
+        ],
+        [
+            'adress.required' => 'Adresas turi būti įvestas',
+            'adress.max' => 'Adresas turi būti iki 255 simbolių',
+            'number.required' => 'Numeris turi būti įvestas',
+            'number.max' => 'Numeris turi būti 16 simbolų',
+            'number.min' => 'Numeris turi būti 16 simbolų',
+            'date.required' => 'Data turi būti įvesta',
+            'date.max' => 'Data turi būti 5 simboliau tokiu formatu "12/30"',
+            'date.min' => 'Data turi būti 5 simboliau tokiu formatu "12/30"',
+            'cvc.required' => 'CVC turi būti įvestas',
+            'cvc.max' => 'CVC turi būti iš 3 simboliu',
+            'cvc.min' => 'CVC turi būti iš 3 simboliu',
+        ]);
+
+
         $order = new Order();
         $order->status = 0;
         $order->adress = $request['adress'];
@@ -357,6 +499,27 @@ class ProductController extends Controller
 
     public function buyBike(Request $request)
     {
+        $request->validate([
+            'adress' => ['required', 'string', 'max:255'],
+            'number' => ['required', 'numeric', 'min:16', 'max:16'],
+            'date' => ['required', 'string', 'min:5', 'max:5'],
+            'cvc' => ['required', 'numeric', 'min:3', 'max:3'],
+        ],
+        [
+            'adress.required' => 'Adresas turi būti įvestas',
+            'adress.max' => 'Adresas turi būti iki 255 simbolių',
+            'number.required' => 'Numeris turi būti įvestas',
+            'number.max' => 'Numeris turi būti 16 simbolų',
+            'number.min' => 'Numeris turi būti 16 simbolų',
+            'date.required' => 'Data turi būti įvesta',
+            'date.max' => 'Data turi būti 5 simboliau tokiu formatu "12/30"',
+            'date.min' => 'Data turi būti 5 simboliau tokiu formatu "12/30"',
+            'cvc.required' => 'CVC turi būti įvestas',
+            'cvc.max' => 'CVC turi būti iš 3 simboliu',
+            'cvc.min' => 'CVC turi būti iš 3 simboliu',
+        ]);
+
+
         $order = new Order();
         $order->status = 0;
         $order->adress = $request['adress'];

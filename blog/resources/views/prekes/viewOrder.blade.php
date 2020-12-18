@@ -76,6 +76,7 @@
                                     <th scope="col">Kaina</th>
                                     <th scope="col">Kategorija</th>
                                     <th scope="col">Aprašas</th>
+                                    <th scope="col">Būsena</th>
                                     <th scope="col">Kiekis</th>
                                     <th scope="col">Spalva</th>
                                 </tr>
@@ -93,13 +94,19 @@
                                         <td>{{$product->price}} €</td>
                                         <td>{{$product->category}}</td>
                                         <td>{{substr($product->description,0,50) }}</td>
-                                        <td>{{$product->quantity }}</td>
+                                        <td>@if($product->pivot->status)
+                                                Rezervuotas
+                                            @else
+                                                nerezervuotas
+                                            @endif
+                                        </td>
+                                        <td>{{$product->pivot->quantity }}</td>
                                         <td>{{$product->color}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                    </div>
+                    </div>`
                 </div>
             </div>
         </div>

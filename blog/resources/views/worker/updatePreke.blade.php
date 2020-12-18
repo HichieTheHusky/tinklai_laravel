@@ -4,8 +4,20 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+            </div>
+            <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Prekiu pridejimas') }}</div>
+
 
                     <div class="card-body">
                         @if (session('status'))
@@ -19,7 +31,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="quantity">Kiekis</label>
-                                <input type="number" class="form-control" name="quantity" id="quantity" aria-describedby="emailHelp"">
+                                <input type="number" class="form-control" name="quantity" id="quantity" aria-describedby="emailHelp">
                                 @error('quantity')
                                 <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

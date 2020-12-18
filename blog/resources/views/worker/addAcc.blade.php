@@ -14,6 +14,15 @@
                             </div>
                         @endif
 
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
 
                             <form method="post" action="{{ route('createPreke') }}">
                                 @csrf
@@ -49,7 +58,7 @@
                                 <div class="form-group">
                                     <label for="url">Nuotraukos URL</label>
                                     <input type="text" class="form-control" name="url" id="url" aria-describedby="emailHelp" placeholder="Įveskite nuotraukos url">
-                                    @error('tekstas')
+                                    @error('url')
                                     <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

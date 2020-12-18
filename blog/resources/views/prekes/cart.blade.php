@@ -79,12 +79,21 @@
                 </div>
             </div>
         </div>
+
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">{{ __('Užsakymas') }}</div>
                     <div class="card-body">
-
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <form method="post" action="{{ route('buyPreke') }}">
                             @csrf
                             <div class="form-group">
@@ -138,5 +147,6 @@
             </div>
         </div>
     </div>
+{{--    {{ dd(get_defined_vars()) }}--}}
 @endsection
 
