@@ -355,9 +355,9 @@ class ProductController extends Controller
 
         $request->validate([
             'adress' => ['required', 'string', 'max:255'],
-            'number' => ['required', 'numeric', 'min:16', 'max:16'],
+            'number' => ['required', 'string', 'min:16', 'max:16'],
             'date' => ['required', 'string', 'min:5', 'max:5'],
-            'cvc' => ['required', 'numeric', 'min:3', 'max:3'],
+            'cvc' => ['required', 'string', 'min:3', 'max:3'],
         ],
         [
             'adress.required' => 'Adresas turi būti įvestas',
@@ -501,9 +501,9 @@ class ProductController extends Controller
     {
         $request->validate([
             'adress' => ['required', 'string', 'max:255'],
-            'number' => ['required', 'numeric', 'min:16', 'max:16'],
+            'number' => ['required', 'string', 'min:16', 'max:16'],
             'date' => ['required', 'string', 'min:5', 'max:5'],
-            'cvc' => ['required', 'numeric', 'min:3', 'max:3'],
+            'cvc' => ['required', 'string', 'min:3', 'max:3'],
         ],
         [
             'adress.required' => 'Adresas turi būti įvestas',

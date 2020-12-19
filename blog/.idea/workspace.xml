@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50a5cdf8-c133-44ce-9b66-d09d3496bdbf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/img/name.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/prekes/cart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/prekes/cart.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/prekes/partpicker.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/prekes/partpicker.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/prekes/viewOrder.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/prekes/viewOrder.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/worker/addAcc.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/worker/addAcc.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/worker/addBase.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/worker/addBase.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/worker/addBrake.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/worker/addBrake.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/worker/addSaddle.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/worker/addSaddle.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/worker/addTyre.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/worker/addTyre.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/worker/updatePreke.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/worker/updatePreke.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +171,8 @@
       <workItem from="1608102926989" duration="19546000" />
       <workItem from="1608189866183" duration="14195000" />
       <workItem from="1608277301331" duration="1662000" />
-      <workItem from="1608281851755" duration="8128000" />
+      <workItem from="1608281851755" duration="8968000" />
+      <workItem from="1608366157373" duration="710000" />
     </task>
     <servers />
   </component>
