@@ -79,6 +79,7 @@
                                     <th scope="col">Būsena</th>
                                     <th scope="col">Kiekis</th>
                                     <th scope="col">Spalva</th>
+                                    <th scope="col">Veiksmai</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -102,6 +103,25 @@
                                         </td>
                                         <td>{{$product->pivot->quantity }}</td>
                                         <td>{{$product->color}}</td>
+                                        <td>
+                                            @if(count($order->items) == 1)
+                                            <form style="display: inline;" method="post" action="{{ route('deleteProductOrder') }}" onclick="return confirm('Jūs bandote pašalinti paskutine užsakymo prekę, tad sistema atšauks užsikimą ar sutinkate ?')">
+                                                <input type="hidden" id="id_product" name="id_product" value={{ $product->id }}>
+                                                <input type="hidden" id="id_order" name="id_order" value={{ $order->id }}>
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-sm btn-danger">Trinti</button>
+                                            </form>
+                                            @else
+                                            <form style="display: inline;" method="post" action="{{ route('deleteProductOrder') }}" onclick="return confirm('Ar tikrai norite pašalinti?')">
+                                                <input type="hidden" id="id_product" name="id_product" value={{ $product->id }}>
+                                                <input type="hidden" id="id_order" name="id_order" value={{ $order->id }}>
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-sm btn-danger">Trinti</button>
+                                            </form>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

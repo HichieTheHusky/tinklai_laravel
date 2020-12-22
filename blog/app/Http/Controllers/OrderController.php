@@ -76,4 +76,24 @@ class OrderController extends Controller
 
         return redirect()->route('viewOrders');
     }
+    public function deleteProductOrder(Request $request)
+    {
+        $items = Item::where('fk_order',$request['id_order'])->get();
+        $item = Item::where('fk_order',$request['id_order'])->where('fk_product',$request['id_product'])->get();
+        if($item[0]->status)
+        {
+            $product = product::find($request['id_product']);
+            $product->quantity = $product->quantity + $item[0]->quantity;
+            $product->save();
+        }
+        $item[0]->delete();
+
+        $order = Order::find($request['id_order']);
+        if(count($items) == 1)
+        {
+            $order->delete();
+            return redirect()->route('viewOrders');
+        }
+        return view('viewOrder', compact('order'));
+    }
 }

@@ -59,6 +59,7 @@ Route::prefix('Vartotojas')->middleware(['user', 'auth'])->group(function (){
     Route::post('/buyPreke', [App\Http\Controllers\ProductController::class, 'buyPreke'])->name('buyPreke');
 
     Route::delete('/TrintiUžsakymą', [App\Http\Controllers\OrderController::class, 'deleteOrder'])->name('deleteOrder');
+    Route::delete('/TrintiPreke', [App\Http\Controllers\OrderController::class, 'deleteProductOrder'])->name('deleteProductOrder');
 
     Route::view('PasidarykDvirati','partpicker')->name('partpicker');
     Route::get('/Prekes', [App\Http\Controllers\ProductController::class, 'viewPickerPrekes'])->name('viewPickerProducts');
